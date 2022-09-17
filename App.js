@@ -1,59 +1,48 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
+import { Text, Image, View, StyleSheet, ScrollView } from 'react-native';
 
 const App = ()=> {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [listName, setListName] = useState([
+        {'name': 'Ben', 'id': 1},
+        {'name': 'Susan', 'id': 2},
+        {'name': 'Robert', 'id': 3},
+        {'name': 'Mary', 'id': 4},
+        {'name': 'Daniel', 'id': 5},
+        {'name': 'Laura', 'id': 6},
+        {'name': 'John', 'id': 7},
+        {'name': 'Debra', 'id': 8},
+        {'name': 'Aron', 'id': 9},
+        {'name': 'Ann', 'id': 10},
+        {'name': 'Steve', 'id': 11},
+        {'name': 'Olivia', 'id': 12}
+    ]);
 
-    const login = (email, pass) => {
-        alert('email: ' + email + ' password: ' + pass)
-    }
     return (
-        <View style = {styles.container}>
-            <TextInput style = {styles.input}
-               underlineColorAndroid = "transparent"
-               placeholder = "Email"
-               placeholderTextColor = "#9a73ef"
-               autoCapitalize = "none"
-               onChangeText = {email => setEmail(email)}/>
-
-            <TextInput style = {styles.input}
-               underlineColorAndroid = "transparent"
-               placeholder = "Password"
-               placeholderTextColor = "#9a73ef"
-               autoCapitalize = "none"
-               onChangeText = {password => setPassword(password)}/>
-
-            <TouchableOpacity
-               style = {styles.submitButton}
-               onPress = {
-                  () => login(email, password)
-               }>
-               <Text style = {styles.submitButtonText}> Submit </Text>
-            </TouchableOpacity>
+        <View>
+            <ScrollView>
+               {
+                  listName.map((item, index) => (
+                     <View key = {item.id} style = {styles.item}>
+                        <Text>{item.name}</Text>
+                     </View>
+                  ))
+               }
+            </ScrollView>
         </View>
     );
 };
 
-const styles = StyleSheet.create({
-   container: {
-      paddingTop: 23
-   },
-   input: {
-      margin: 15,
-      height: 40,
-      borderColor: '#7a42f4',
-      borderWidth: 1
-   },
-   submitButton: {
-      backgroundColor: '#7a42f4',
-      padding: 10,
-      margin: 15,
-      height: 40,
-   },
-   submitButtonText:{
-      color: 'white'
+const styles = StyleSheet.create ({
+   item: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 30,
+      margin: 2,
+      borderColor: '#2a4944',
+      borderWidth: 1,
+      backgroundColor: '#d2f7f1'
    }
 })
 
